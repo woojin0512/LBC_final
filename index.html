@@ -1,1 +1,535 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WHY LBC? — 효원고 생물연구부</title>
 
+<!-- Google font (Inter) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f2f9ff;
+  --glass: rgba(255,255,255,0.04);
+  --accent-1: #3fd3ff; /* cyan */
+  --accent-2: #2b8cff; /* blue */
+  --muted: #9fb7c9;
+  --card-bg: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  --radius: 14px;
+}
+
+*{box-sizing:border-box}
+html,body{
+height:100%;
+scroll-snap-type:y proximity;
+overflow-y:scroll;
+}
+body{
+  margin:0;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+  background: linear-gradient(180deg,#ffffff,#eaf6ff 40%,#dff3ff);
+  color:#eaf6ff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  scroll-behavior:smooth;
+}
+
+/* NAV */
+nav{
+  position:fixed;left:0;right:0;top:18px;z-index:1200;
+  display:flex;justify-content:space-between;align-items:center;padding:10px 28px;
+  gap:20px;
+}
+.brand{
+  display:flex;gap:12px;align-items:center;
+  background:linear-gradient(90deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15));
+  padding:8px 14px;border-radius:12px;
+  backdrop-filter: blur(22px) saturate(180%);
+}
+.logo-dot{
+  width:36px;height:36px;border-radius:10px;
+  background: linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;font-weight:800;color:#00121e;
+  box-shadow: 0 6px 18px rgba(43,140,255,0.16);
+  font-family: system-ui;
+}
+.brand h4{margin:0;font-weight:700;font-size:16px;color:#000000}
+nav .links{display:flex;gap:18px;align-items:center}
+nav a{
+  color:var(--muted);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:10px;
+}
+nav a.active, nav a:hover{color:var(--accent-1);background: rgba(63,211,255,0.04)}
+.who-grid{
+display:grid;
+grid-template-columns:1fr 1.4fr;
+gap:28px;
+margin-top:30px;
+}
+
+.who-left{
+display:grid;
+gap:20px;
+}
+.column{
+display:flex;
+flex-direction:column;
+gap:16px;
+flex:1;
+}
+
+.small-box{
+background:white;
+color:black;
+padding:16px;
+}
+
+.big-box{
+flex:1.6;
+background:white;
+color:black;
+padding:24px;
+}
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 6%;
+  position:relative;z-index:2;
+}
+.hero-inner{
+  max-width:1200px;width:100%;display:grid;grid-template-columns: 1fr 460px;gap:40px;align-items:center;
+}
+.hero-left{
+  padding:24px 0;
+}
+.kicker{color:var(--accent-1);font-weight:700;letter-spacing:2px}
+h1{
+  font-size:56px;line-height:1.02;margin:10px 0;font-weight:800;
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-desc{color:var(--muted);margin-top:16px;font-size:16px;max-width:640px}
+
+/* CTA */
+.cta-row{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  padding:12px 18px;border-radius:12px;font-weight:700;border:0;cursor:pointer;
+  box-shadow: 0 6px 18px rgba(2,10,30,0.5);
+}
+.btn-primary{
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  color:#00121e;
+}
+.btn-ghost{
+  background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);
+}
+
+/* HERO RIGHT : DNA + liquid widget */
+.panel{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:18px;padding:18px;backdrop-filter: blur(8px);
+  height:420px;display:flex;flex-direction:column;gap:12px;justify-content:center;align-items:center;
+}
+
+/* PAGE SECTIONS */
+.section{
+  padding:80px 6%;position:relative;z-index:1;
+  scroll-snap-align:start;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start .section{
+padding:80px 6%;
+position:relative;
+z-index:1;
+
+scroll-snap-align:start;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+};
+}
+.section h2{font-size:28px;color:var(--accent-2);margin-bottom:18px}
+.row{display:flex;gap:24px;flex-wrap:wrap}
+.card strong{
+color:#000000;
+font-size:17px;
+display:block;
+margin-bottom:6px;
+}
+.card{
+  background:var(--card-bg);border-radius:var(--radius);padding:18px;flex:1;min-width:240px;
+  box-shadow: 0 8px 28px rgba(3,11,24,0.45);border:1px solid rgba(255,255,255,0.02);
+}
+
+/* EXPERIMENTS GRID */
+.ex-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+    padding:28px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(6px);
+    min-height:160px;
+}
+
+.exp-note{
+width:100%;
+margin-top:12px;
+padding:8px 10px;
+border-radius:8px;
+border:none;
+background:rgba(255,255,255,0.12);
+color:white;
+font-size:13px;
+resize:none;
+height:50px;
+}
+/* WHO (badge style) */
+.badge{display:inline-block;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700;margin:6px}
+
+/* RECRUITMENT */
+.steps{display:flex;gap:14px;flex-wrap:wrap}
+.step{flex:1;min-width:200px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(43,140,255,0.06), rgba(63,211,255,0.02));color:#001427;font-weight:700}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.gallery img{width:100%;height:140px;object-fit:cover;border-radius:10px}
+
+/* CONTACT FOOTER */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.small{font-size:13px;color:var(--muted)}
+
+/* responsive */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:20px}
+  h1{font-size:36px}
+  .panel{height:360px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">
+    <div class="logo-dot">LBC</div>
+    <div>
+      <h4 style="margin:0">LBC 생물연구부</h4>
+      <div class="small">효원고 · Future Biology</div>
+    </div>
+  </div>
+  <div class="links">
+    <a href="#why" class="nav-link">WHY LBC?</a>
+    <a href="#who" class="nav-link">Who</a>
+    <a href="#experiments" class="nav-link">Experiments</a>
+    <a href="#recruit" class="nav-link">Recruit</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="why">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="kicker">WHY LBC?</div>
+      <h1>실험으로 세상을 읽다, <br>실험 중심 생명 동아리 LBC</h1>
+      <p class="hero-desc">효원고 생물연구부 LBC는 개인 연구 중심의 프로젝트 기반 동아리입니다.  
+      생기부를 채울 실험 설계부터 데이터 정리, 발표까지 전 과정 지원 — 의학 · 생태 · 기초 연구로 연결합니다.</p>
+
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="document.getElementById('recruit').scrollIntoView({behavior:'smooth'})">지원하기 (QR)</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('experiments').scrollIntoView({behavior:'smooth'})">실험 보기</button>
+      </div>
+
+      <div style="margin-top:18px">
+        <span class="badge">개인 연구 지원</span>
+        <span class="badge">동아리 학술제 참여</span>
+        <span class="badge">기초 생명 이론 실험</span>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: DNA + Liquid interaction -->
+    <div class="panel" aria-hidden="true">
+      <!-- SVG DNA (animated via JS) -->
+      <svg id="dna" width="320" height="320" viewBox="0 0 260 320" style="max-width:100%">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#6ff0ff"/>
+            <stop offset="1" stop-color="#2b8cff"/>
+          </linearGradient>
+        </defs>
+        <!-- backbone paths -->
+        <g transform="translate(80,20)" stroke="url(#g1)" stroke-width="3" fill="none" stroke-linecap="round">
+          <path class="back1" d="M0,0 C80,40 80,120 0,160 C-80,200 -80,280 0,320" opacity="0.9"/>
+          <path class="back2" d="M80,0 C0,40 0,120 80,160 C160,200 160,280 80,320" opacity="0.9"/>
+        <!-- rungs -->
+        <g id="rungs" transform="translate(80,20)" stroke="rgba(255,255,255,0.6)" stroke-width="2">
+          <!-- rungs inserted by JS -->
+        </g>
+      </svg>
+
+      <div style="width:100%;text-align:center;color:var(--muted);font-weight:600">
+        LBC · Laboratory for Biological Curiosity
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section id="who" class="section">
+  <h2>누가 와야 하나?</h2>
+  <div class="row" style="align-items:center">
+    <div class="card" style="flex:1.4">
+      <p style="margin:0 0 12px 0;font-weight:700">이런 학생에게 추천</p>
+      <div class="column">
+      <div class="card small-box">
+      개인별 연구로 생기부를 채우고 싶은 학생
+      </div>
+      <div class="card small-box">
+      의학, 기초 생명과학, 분자 생물학, 생태학 등에 관심 있는 학생
+      </div>
+
+
+      <div class="card small-box">
+      데이터 기반 결과물을 만들고 싶은 학생
+      </div>
+      </div>
+      <div class="card big-box">
+      누구보다 재미있게 동아리 활동을 하고싶은 학생
+      </div>
+
+
+    </div>
+
+    <div class="card">
+      <p style="margin:0 0 12px 0;font-weight:700">우리의 강점</p>
+      <div class="small">지도교사·선배 멘토링 · 실험 설계 워크숍 · 데이터 분석 교육 제공</div>
+      <div style="margin-top:12px" class="small">실전 연구 → 보고서 → 포스터 → 발표까지 원스톱 지원</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIMENTS -->
+<section id="experiments" class="section" >
+  <h2>실험 계획 (예시)</h2>
+  <div class="ex-grid" style="margin-top:40px">
+    <div class="card"><strong>환경 변화에 따른 세포막 투과성 변화</strong><div class="small">pH/온도/염농도 변화 실험</div><textarea class="exp-note" placeholder="세부 실험 계획 작성"></textarea></div>
+    <div class="card"><strong>항원-항체 반응을 이용한 바이러스 검사</strong><div class="small">ELISA 개념 응용</div><textarea class="exp-note" placeholder="세부 실험 계획 작성"></textarea></div>
+    <div class="card"><strong>효모의 알콜 발효 및 출아 관찰</strong><div class="small">발효 속도 정량화</div><textarea class="exp-note" placeholder="세부 실험 계획 작성"></textarea></div>
+    <div class="card"><strong>녹차 카테킨 추출 및 항균 효과 검증</strong><div class="small">추출·디스크확산법</div><textarea class="exp-note" placeholder="세부 실험 계획 작성"></textarea></div>
+    <div class="card"><strong>Heat Shock 이용 E.coli transformation  </strong><div class="small">형질전환 실습</div><textarea class="exp-note" placeholder="세부 실험 계획 작성"></textarea></div>
+    <div class="card"><strong>헤마토크릿·혈액형 판정</strong><div class="small">기초 임상 실습</div><textarea class="exp-note" placeholder="세부 실험 계획 작성"></textarea></div>
+  </div>
+</section>
+
+<!-- RECRUIT -->
+<section id="recruit" class="section" style="background: linear-gradient(180deg, rgba(43,140,255,0.02), transparent);">
+  <h2>모집 계획</h2>
+  <div class="row" style="margin-top:12px">
+    <div class="card" style="min-width:320px">
+      <p style="font-weight:800;margin-bottom:6px">Step 1 • QR로 설문 제출</p>
+      <div class="small">설문 항목: 관심 분야 / 실험 경험 / 지원 동기</div>
+    </div>
+
+    <div class="card" style="min-width:320px">
+      <p style="font-weight:800;margin-bottom:6px">Step 2 • 설문 기반 개인 대면 면접</p>
+      <div class="small">면접은 자유로운 분위기에서 생명과학에 대한 흥미, 이제까지의 연구 경험 등 중점적으로 파악 </div>
+    </div>
+
+    <div class="card" style="min-width:200px">
+      <p style="font-weight:800;margin-bottom:6px">중복 지원 가능</p>
+      <div class="small">타 동아리와의 중복 지원 허용 (결과발표 후 선택)</div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <!-- QR 자리(이미지 교체 가능) -->
+    <div style="width:180px;min-width:150px">
+      <div style="background:#001625;padding:12px;border-radius:12px;text-align:center">
+        <div style="width:120px;height:120px;margin:0 auto;background:linear-gradient(180deg,#083243,#062833);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted)">
+          QR
+        </div>
+        <div class="small" style="margin-top:8px">QR로 설문 제출(클릭 시 이동)</div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-width:220px">
+      <div class="card">
+        <div style="font-weight:800">기장단</div>
+        <div class="small" style="margin-top:6px">
+          21203 김우진 · 010-3072-6329<br>
+          21207 모찬영 · 21021 홍지은
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY / STATS -->
+<section id="more" class="section">
+  <h2>활동/성과</h2>
+  <div class="row" style="margin-top:12px">
+    <div class="card" style="flex:1.2">
+      <div style="font-weight:800;margin-bottom:10px">최근 활동</div>
+      <div class="gallery">
+        <!-- 교체 가능한 이미지들 -->
+        <img src="https://images.unsplash.com/photo-1581092334423-1c5f0f7c8b3e?auto=format&fit=crop&w=800&q=60" alt="lab">
+        <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=800&q=60" alt="microscope">
+        <img src="https://images.unsplash.com/photo-1581093458798-7f2f7f1f042d?auto=format&fit=crop&w=800&q=60" alt="experiment">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60" alt="data">
+      </div>
+    </div>
+
+    <div class="card" style="flex:0.8">
+      <div style="font-weight:800;margin-bottom:10px">성과 스냅샷</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:120px">
+          <div class="stat" id="stat1">0</div>
+          <div class="small">프로젝트</div>
+        </div>
+        <div style="flex:1;min-width:120px">
+          <div class="stat" id="stat2">0</div>
+          <div class="small">포스터 발표</div>
+        </div>
+        <div style="flex:1;min-width:120px">
+          <div class="stat" id="stat3">0</div>
+          <div class="small">멘토링</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<section id="contact" class="section" style="padding-bottom:120px;background:linear-gradient(180deg, transparent, rgba(0,6,12,0.6))">
+  <h2>Contact</h2>
+  <div class="contact-grid" style="margin-top:12px">
+    <div class="card">
+      <div style="font-weight:800">기장 연락처</div>
+      <div class="small" style="margin-top:8px">21203 김우진 · 010-3072-6329</div>
+    </div>
+    <div class="card">
+      <div style="font-weight:800">기타</div>
+      <div class="small" style="margin-top:8px">(타 동아리 중복 지원 가능)</div>
+    </div>
+    <div class="card">
+      <div style="font-weight:800">동아리 장소</div>
+      <div class="small" style="margin-top:8px">공지된 바 없음 (작년은 과학실, 교실 번갈아 이용)</div>
+    </div>
+  </div>
+
+  <footer style="margin-top:34px;text-align:center;color:var(--muted)">
+    © LBC — Laboratory for Biological Curiosity
+  </footer>
+</section>
+
+<!-- SCRIPTS: DNA, scroll highlights, stats, small liquid displacement -->
+<script>
+/* ---------- DNA rung generator & simple animation ---------- */
+(function(){
+  const rungsGroup = document.getElementById('rungs');
+  const N = 14;
+  for(let i=0;i<N;i++){
+    const y = i * 22;
+    const x1 = 0;
+    const x2 = 60;
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1); line.setAttribute('y1',y);
+    line.setAttribute('x2',x2); line.setAttribute('y2',y);
+    line.setAttribute('stroke','url(#g1)');
+    line.setAttribute('stroke-width','3');
+    rungsGroup.appendChild(line);
+  }
+
+  // small waving animation by shifting control points (CSS animate would be heavier)
+  const back1 = document.querySelector('.back1');
+  const back2 = document.querySelector('.back2');
+  let t=0;
+  function anim(){
+    t+=0.02;
+    const amp = 6;
+    const s1 = `M0,0 C40,${40+Math.sin(t)*amp} 40,120 0,160 C-40,200 -40,280 0,320`;
+    const s2 = `M60,0 C20,${40-Math.sin(t)*amp} 20,120 60,160 C100,200 100,280 60,320`;
+    back1.setAttribute('d',s1);
+    back2.setAttribute('d',s2);
+
+    // rungs tilt
+    Array.from(rungsGroup.children).forEach((ln, idx)=>{
+      const offset = Math.sin(t + idx*0.25) * 6;
+      const y = idx*22;
+      ln.setAttribute('y1', y);
+      ln.setAttribute('y2', y);
+    });
+
+    requestAnimationFrame(anim);
+  }
+  anim();
+})();
+
+/* ---------- mouse liquid-like pointer (subtle) ---------- */
+(function(){
+  const panel = document.querySelector('.panel');
+  let mx = -1000, my = -1000;
+  window.addEventListener('mousemove', e=>{
+    mx = e.clientX; my = e.clientY;
+    // subtle parallax on panel
+    const rect = panel.getBoundingClientRect();
+    const cx = (mx - (rect.left + rect.width/2)) / rect.width;
+    const cy = (my - (rect.top + rect.height/2)) / rect.height;
+    panel.style.transform = `translate3d(${cx*8}px, ${cy*6}px, 0) rotate(${cx*2}deg)`;
+  });
+})();
+
+/* ---------- scroll spy for nav highlighting ---------- */
+(function(){
+  const links = document.querySelectorAll('nav a.nav-link');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+  function onScroll(){
+    const top = window.scrollY + innerHeight*0.35;
+    let idx = sections.findIndex(sec => top < sec.offsetTop + sec.offsetHeight);
+    if(idx === -1) idx = sections.length-1;
+    links.forEach((a,i)=> a.classList.toggle('active', i===idx));
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+})();
+
+/* ---------- stats count up ---------- */
+(function(){
+  const s1 = document.getElementById('stat1'), s2 = document.getElementById('stat2'), s3 = document.getElementById('stat3');
+  const target = [12, 8, 24]; // 예시 수치 -> 배포 전에 실제 수치로 바꿔
+  let cur = [0,0,0];
+  function step(){
+    let done = true;
+    for(let i=0;i<3;i++){
+      if(cur[i] < target[i]){ cur[i] += Math.ceil((target[i]-cur[i])/6); done=false; }
+    }
+    s1.textContent = cur[0]; s2.textContent = cur[1]; s3.textContent = cur[2];
+    if(!done) requestAnimationFrame(step);
+  }
+  // animate when visible
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting) step();
+    });
+  }, {threshold:0.4});
+  obs.observe(document.getElementById('more'));
+})();
+
+/* ---------- accessibility: keyboard nav focus ---------- */
+(function(){
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Tab') document.body.classList.add('show-focus');
+  });
+})();
+</script>
+
+</body>
+</html>
